@@ -18,6 +18,7 @@
           "es6"
       ],
       "baseUrl": ".",
+      "types": ["socket.io-client"],
       "paths": {
           "@src/*": [
               "src/*.android.ts",
