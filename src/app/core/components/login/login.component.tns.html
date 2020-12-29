@@ -4,13 +4,13 @@
         <Button dock="right" text="" class="bg-cxx-color" width="25%" style="margin: 5;"></Button>
         <Button dock="top" text="" class="bg-cxx-color" height="40%"style="margin: 5;"></Button>
 
-        <StackLayout class="form">
+        <StackLayout class="form" [formGroup]="loginForm">
             
             <StackLayout class="input-field">
-              <TextField hint="Enter your name" class="input -outline -rounded-lg" backgroundColor="white"></TextField>
+              <TextField hint="Enter your name" class="input -outline -rounded-lg" backgroundColor="white" formControlName="name"></TextField>
             </StackLayout>
           
-            <Button text="Log In" class="btn btn-primary -rounded-lg" backgroundColor="#ffecc5"></Button>
+            <Button text="Log In" class="btn btn-primary -rounded-lg" backgroundColor="#ffecc5" (tap)="onLoginClicked()"></Button>
           </StackLayout>
     </DockLayout>
 </AbsoluteLayout>
