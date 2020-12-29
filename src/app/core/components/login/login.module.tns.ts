@@ -6,8 +6,7 @@ import { LoginComponent } from './login.component';
   declarations: [
     LoginComponent
   ],
-  imports: [
-    
-  ]
+  imports: [],
+  exports: [LoginComponent]
 })
 export class LoginModule { }
