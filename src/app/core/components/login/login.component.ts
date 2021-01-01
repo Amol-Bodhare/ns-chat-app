@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, RequiredValidator, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { WebSocketService } from '../../services/web-socket.service';
 
 @Component({
   selector: 'app-login',
@@ -9,8 +10,10 @@ import { FormBuilder, FormGroup, RequiredValidator, Validators } from '@angular/
 export class LoginComponent implements OnInit {
 
   loginForm: FormGroup;
+  activeUsers;
   constructor(
-    private readonly fb: FormBuilder
+    private readonly fb: FormBuilder,
+    private readonly webSocketService: WebSocketService,
   ) { }
 
   ngOnInit(): void {
@@ -25,5 +28,19 @@ export class LoginComponent implements OnInit {
 
   onLoginClicked() {
     console.log('Name', this.loginForm.get('name').value+'')
+    this.onJoin(this.loginForm.get('name').value+'');
+  }
+
+  onJoin(name) {
+
+    this.webSocketService.onConnect(name);
+    // this.webSocketService.listen('getUsers').subscribe((users) => {
+    //   console.log('user', this.activeUsers)
+    //   this.activeUsers = users;
+    // });
+    // this.webSocketService.listen('typing').subscribe((data) => this.updateFeedback(data));
+    // this.webSocketService.listen('chat').subscribe((data) => this.updateMessage(data));
+
+    // this.webSocketService.emit('getUsers', {});
   }
 }
