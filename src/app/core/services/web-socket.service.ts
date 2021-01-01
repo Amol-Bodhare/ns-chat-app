@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { of } from 'rxjs';
+import { of, Subject } from 'rxjs';
 import { Observable } from 'rxjs/internal/Observable';
 
 @Injectable({
@@ -7,6 +7,7 @@ import { Observable } from 'rxjs/internal/Observable';
 })
 export class WebSocketService {
 
+  activeUsers = new Subject();
   constructor() { 
   }
 
@@ -24,6 +25,7 @@ export class WebSocketService {
 
     mySocket.addEventListener('message', (evt)=> {
       console.log('Users received', new Map(JSON.parse(evt.data)));
+      this.activeUsers.next(new Map(JSON.parse(evt.data)))  
     })
   }
 
