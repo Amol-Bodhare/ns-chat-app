@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { WebSocketService } from '../../services/web-socket.service';
 
 @Component({
@@ -14,6 +15,7 @@ export class LoginComponent implements OnInit {
   constructor(
     private readonly fb: FormBuilder,
     private readonly webSocketService: WebSocketService,
+    private readonly router: Router,
   ) { }
 
   ngOnInit(): void {
@@ -34,6 +36,13 @@ export class LoginComponent implements OnInit {
   onJoin(name) {
 
     this.webSocketService.onConnect(name);
+
+    this.webSocketService.activeUsers.subscribe(data => {
+      console.log('data', data);
+      if (data) {
+        this.router.navigateByUrl('/users');
+      }
+    });
     // this.webSocketService.listen('getUsers').subscribe((users) => {
     //   console.log('user', this.activeUsers)
     //   this.activeUsers = users;
