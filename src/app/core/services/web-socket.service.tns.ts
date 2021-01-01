@@ -12,10 +12,17 @@ export class WebSocketService {
 
   onConnect(name: string) {
     console.log("Mobile only")
-    const ws = new WebSocket('ws://localhost:8082');
+    const mySocket = new WebSocket('ws://localhost:8082');
 
-    ws.addEventListener('open', ()=> {
+    mySocket.addEventListener('open', (evt)=> {
       console.log('We are connected');
+      mySocket.send(JSON.stringify({
+        name: name
+      }));
+    })
+
+    mySocket.addEventListener('message', (evt)=> {
+      console.log('Users received', JSON.stringify([...new Map(JSON.parse(evt.data))]));
     })
   }
 }

@@ -13,10 +13,17 @@ export class WebSocketService {
 
   onConnect(name: string) {
 
-    const ws = new WebSocket('ws://localhost:8082');
+    const mySocket = new WebSocket('ws://localhost:8082');
 
-    ws.addEventListener('open', ()=> {
+    mySocket.addEventListener('open', ()=> {
       console.log('We are connected');
+      mySocket.send(JSON.stringify({
+        name: name
+      }));
+    })
+
+    mySocket.addEventListener('message', (evt)=> {
+      console.log('Users received', new Map(JSON.parse(evt.data)));
     })
   }
 
