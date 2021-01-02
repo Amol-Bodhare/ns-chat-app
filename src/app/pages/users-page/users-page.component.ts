@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-users-page',
@@ -6,10 +7,19 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./users-page.component.css']
 })
 export class UsersPageComponent implements OnInit {
-
-  constructor() { }
+  activeUsers = [];
+  state;
+  constructor(
+    private readonly router: Router,
+  ) {
+    this.state = this.router.getCurrentNavigation().extras.state;
+  }
 
   ngOnInit(): void {
+    this.state.userList.forEach(user => {
+      this.activeUsers.push(user.name);
+    });
+    console.log('users', this.activeUsers);
   }
 
 }

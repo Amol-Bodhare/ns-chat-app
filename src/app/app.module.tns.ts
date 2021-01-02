@@ -6,6 +6,7 @@ import { AppRoutingModule } from '@src/app/app-routing.module';
 import { AppComponent } from '@src/app/app.component';
 import { HomeComponent } from '@src/app/pages/home/home.component';
 import { LoginModule } from './core/components/login/login.module.tns';
+import { UsersPageModule } from './pages/users-page/users-page.module.tns';
 
 
 // Uncomment and add to NgModule imports if you need to use two-way binding and/or HTTP wrapper
@@ -21,7 +22,8 @@ import { LoginModule } from './core/components/login/login.module.tns';
     NativeScriptFormsModule,
     NativeScriptModule,
     AppRoutingModule,
-    LoginModule
+    LoginModule,
+    UsersPageModule
   ],
   providers: [],
   bootstrap: [AppComponent],

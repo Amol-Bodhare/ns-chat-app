@@ -40,7 +40,11 @@ export class LoginComponent implements OnInit {
     this.webSocketService.activeUsers.subscribe(data => {
       console.log('data', data);
       if (data) {
-        this.router.navigateByUrl('/users');
+        this.router.navigate(['/users'],{
+          state: {
+              userList: data
+          }
+        });
       }
     });
     // this.webSocketService.listen('getUsers').subscribe((users) => {
