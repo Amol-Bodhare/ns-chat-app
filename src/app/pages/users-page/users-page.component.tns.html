@@ -1,3 +1,13 @@
-<StackLayout orientation="vertical" width="100%" height="100%" backgroundColor="lightgray" >
-    <Label text="{{userName}}" horizontalAlignment="stretch" backgroundColor="yellow" *ngFor="let userName of activeUsers"></Label>
-</StackLayout>
+<ListView [items]="activeUsers" (itemTap)="onTap($event)">
+    <ng-template let-username="item" let-i="index">
+        <StackLayout orientation="vertical" backgroundColor="white">
+            <StackLayout orientation="horizontal">
+                <Label text="{{userImages[i].initial}}" backgroundColor="{{userImages[i].colorCode}}" class="profileImage"></Label>
+                <!-- uncomment GridLayout to align name label to top -->
+                <!-- <GridLayout> -->
+                    <Label text="{{username}}" horizontalAlignment="stretch" backgroundColor="white" height="50" class="name-label"></Label>
+                <!-- </GridLayout> -->
+            </StackLayout>
+        </StackLayout>
+    </ng-template>
+</ListView>

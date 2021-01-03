@@ -1,1 +1,21 @@
 /* Add mobile styles for the component here.  */
+.profileImage {
+    width: 50;
+    height: 50;
+    border-radius: 50%;
+    font-size: 18;
+    font-weight: bold;
+    color: white;
+    text-align: center;
+    line-height: 150;
+    margin: 20 0;
+}
+
+.name-label {
+    font-size: 15;
+    font-weight: bold;
+    vertical-align: middle;
+    /* Uncomment below to align name to top **/
+    /* vertical-align: top;
+    margin-top: 5; */
+}
