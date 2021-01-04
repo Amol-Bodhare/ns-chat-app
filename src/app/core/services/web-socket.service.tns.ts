@@ -24,8 +24,12 @@ export class WebSocketService {
     })
 
     mySocket.addEventListener('message', (evt)=> {
-      console.log('Users received', JSON.stringify([...new Map(JSON.parse(evt.data))]));
-      this.activeUsers.next(new Map(JSON.parse(evt.data)))  
+      const response = JSON.parse(evt.data);
+
+      if (response.userList) {
+        console.log('Users received', JSON.stringify([...new Map(response.userList)]));
+        this.activeUsers.next(new Map(response.userList))  
+      }
 
     })
   }
