@@ -32,6 +32,11 @@ export class UsersPageComponent implements OnInit {
 
   onTap(args: ItemEventData) {
     console.log('selected users', args.index);
+    this.router.navigate(['/chat'],{
+      state: {
+        index: args.index
+      }
+    });
   }
 
   extractInitialAndColor(userName: String): UserImage {

@@ -33,4 +33,8 @@ export class WebSocketService {
 
     })
   }
+
+  onSendMessage() {
+    
+  }
 }
