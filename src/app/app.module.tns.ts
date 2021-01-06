@@ -4,8 +4,8 @@ import { NativeScriptFormsModule, NativeScriptModule } from '@nativescript/angul
 
 import { AppRoutingModule } from '@src/app/app-routing.module';
 import { AppComponent } from '@src/app/app.component';
-import { HomeComponent } from '@src/app/pages/home/home.component';
 import { LoginModule } from './core/components/login/login.module.tns';
+import { ChatPageModule } from './pages/chat-page/chat-page.module.tns';
 import { UsersPageModule } from './pages/users-page/users-page.module.tns';
 
 
@@ -15,7 +15,6 @@ import { UsersPageModule } from './pages/users-page/users-page.module.tns';
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
   ],
   imports: [
     ReactiveFormsModule,
@@ -23,7 +22,8 @@ import { UsersPageModule } from './pages/users-page/users-page.module.tns';
     NativeScriptModule,
     AppRoutingModule,
     LoginModule,
-    UsersPageModule
+    UsersPageModule,
+    ChatPageModule
   ],
   providers: [],
   bootstrap: [AppComponent],

@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { NativeScriptCommonModule } from '@nativescript/angular';
+import { NativeScriptCommonModule, NativeScriptModule } from '@nativescript/angular';
 import { ChatPageComponent } from './chat-page.component';
 
 
@@ -9,7 +9,11 @@ import { ChatPageComponent } from './chat-page.component';
     ChatPageComponent
   ],
   imports: [ 
-    NativeScriptCommonModule
+    NativeScriptCommonModule,
+    NativeScriptModule,
+  ],
+  exports: [
+    ChatPageComponent
   ]
 })
 export class ChatPageModule { }
