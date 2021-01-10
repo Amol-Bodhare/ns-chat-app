@@ -17,7 +17,12 @@
         </StackLayout>
     </StackLayout>
     <StackLayout orientation="vertical" height="95%" style="margin-top: 10;">
-        <Label text="fill"  height="95%" style="background-color: #CCFFFF; margin: 5;"></Label>
+        <ListView [items]="messages" height="95%" style="background-color: #CCFFFF; margin: 5;">
+            <ng-template let-message="item" let-i="index">
+                <DockLayout stretchLastChild="false" width="80%" [horizontalAlignment]="message.from ? 'left' : 'right'">
+                    <Label [dock]="message.from ? 'left' : 'right'" text="{{message.message}}" width="auto" style="background-color: green; height: auto;  border-radius: 50%; padding: 10;" class="p-2" [horizontalAlignment]="message.from ? 'left' : 'right'" textWrap="true"></Label>
+                </DockLayout>
+            </ng-template>
+        </ListView>
     </StackLayout>
 </DockLayout>
-<!-- <Label text="chat-page works!" class="btn btn-primary"></Label> -->
