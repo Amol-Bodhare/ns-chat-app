@@ -10,6 +10,7 @@ import { UserImage } from '@src/app/core/model/user-image.interface';
 })
 export class UsersPageComponent implements OnInit {
   activeUsers = [];
+  idArray = [];
   userImages: Array<UserImage> = [];
   state;
   constructor(
@@ -22,6 +23,7 @@ export class UsersPageComponent implements OnInit {
     this.state.userList.forEach(user => {
       this.activeUsers.push(user.name);
       this.userImages.push(this.extractInitialAndColor(user.name));
+      this.idArray.push(user.id);
     });
     console.log('users', this.activeUsers);
     // this.userImages.forEach(image => {
@@ -34,7 +36,8 @@ export class UsersPageComponent implements OnInit {
     console.log('selected users', args.index);
     this.router.navigate(['/chat'],{
       state: {
-        index: args.index
+        userName: this.activeUsers[args.index],
+        id: this.idArray[args.index]
       }
     });
   }

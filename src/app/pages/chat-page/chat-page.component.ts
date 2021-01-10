@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-chat-page',
@@ -48,9 +49,18 @@ export class ChatPageComponent implements OnInit {
       from: true
     },
   ]
-  constructor() { }
+  state;
+  userIndex;
+  userName;
+  constructor(
+    private readonly router: Router,
+  ) {
+    this.state = this.router.getCurrentNavigation().extras.state;
+  }
 
   ngOnInit(): void {
+    this.userName = this.state.userName;
+    console.log('user index', this.state.id);
   }
 
 }
