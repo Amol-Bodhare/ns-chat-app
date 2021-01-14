@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { WebSocketService } from '../../services/web-socket.service';
+import { WebSocketService } from '@src/app/core/services/web-socket.service';
 
 @Component({
   selector: 'app-login',
