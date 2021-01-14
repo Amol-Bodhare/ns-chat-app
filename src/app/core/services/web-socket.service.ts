@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
-import { of, Subject } from 'rxjs';
-import { Observable } from 'rxjs/internal/Observable';
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -8,22 +7,22 @@ import { Observable } from 'rxjs/internal/Observable';
 export class WebSocketService {
 
   activeUsers = new Subject();
+  private mySocket: any;
   constructor() { 
   }
 
-
   onConnect(name: string) {
 
-    const mySocket = new WebSocket('ws://localhost:8082');
+    this.mySocket = new WebSocket('ws://localhost:8082');
 
-    mySocket.addEventListener('open', ()=> {
+    this.mySocket.addEventListener('open', ()=> {
       console.log('We are connected');
-      mySocket.send(JSON.stringify({
+      this.mySocket.send(JSON.stringify({
         name: name
       }));
     })
 
-    mySocket.addEventListener('message', (evt)=> {
+    this.mySocket.addEventListener('message', (evt)=> {
       const response = JSON.parse(evt.data);
 
       if (response.userList) {
@@ -33,10 +32,10 @@ export class WebSocketService {
     })
   }
 
-  listen(eventName: string): Observable<any> {
-    return of(null);
-  }
-
-  emit(eventName: string, data: any) {
+  onSendMessage(message: string, toId: string) {
+    this.mySocket.send(JSON.stringify({
+      message: message,
+      to: toId
+    }))
   }
 }
