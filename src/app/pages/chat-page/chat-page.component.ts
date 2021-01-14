@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { WebSocketService } from '@src/app/core/services/web-socket.service';
 
 @Component({
   selector: 'app-chat-page',
@@ -7,60 +9,38 @@ import { Router } from '@angular/router';
   styleUrls: ['./chat-page.component.css']
 })
 export class ChatPageComponent implements OnInit {
-  messages = [
-    {
-      message: "Hi, this is Amol",
-      from: true
-    },
-    {
-      message: "Hi, this is Amol",
-      from: true
-    },
-    {
-      message: "Hi, this is Amol",
-      from: true
-    },
-    {
-      message: "Hi, this is Amol",
-      from: false
-    },
-    {
-      message: "Hi, this is Amol",
-      from: true
-    },
-    {
-      message: "Hi, this is Amol",
-      from: true
-    },
-    {
-      message: "Hi, this is Amol",
-      from: false
-    },
-    {
-      message: "Hi, this is Amol",
-      from: true
-    },
-    {
-      message: "Hi, this is Amol and it is a big sentence",
-      from: false
-    },
-    {
-      message: "Hi, this is Amol22222, Hi, this is Amol22222, Hi, this is Amol22222, Hi, this is Amol22222",
-      from: true
-    },
-  ]
+  messages = []
   state;
   userIndex;
   userName;
+  messageForm: FormGroup;
   constructor(
+    private readonly fb: FormBuilder,
+    private readonly webSocketService: WebSocketService,
     private readonly router: Router,
   ) {
     this.state = this.router.getCurrentNavigation().extras.state;
   }
 
   ngOnInit(): void {
+    this.createForm();
     this.userName = this.state.userName;
     console.log('user index', this.state.id);
+  }
+
+  createForm() {
+    this.messageForm = this.fb.group({
+      message: ['', Validators.required]
+    })
+  }
+
+  onSend() {
+    console.log('Form', this.messageForm.get('message').value+'')
+    this.messages.push({
+      message: this.messageForm.get('message').value,
+      from: 'right'
+    });
+    this.webSocketService.onSendMessage(this.messageForm.get('message').value+'', this.state.id);
   }
 
 }

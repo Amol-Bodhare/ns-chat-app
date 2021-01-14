@@ -11,9 +11,9 @@
         </StackLayout>
     </StackLayout>
     <StackLayout dock="bottom" height="10%" >
-        <StackLayout orientation="horizontal" class="input-field">
-            <TextField hint="Enter your name" width="70%" class="input -outline -rounded-sm" backgroundColor="white"></TextField>
-            <Button text="Send" width="20%" class="btn btn-primary -rounded-sm m-l-0" backgroundColor="#ffecc5"></Button>
+        <StackLayout orientation="horizontal" class="form input-field" [formGroup]="messageForm">
+            <TextField hint="Enter your name" width="70%" class="input -outline -rounded-sm" backgroundColor="white" formControlName="message"></TextField>
+            <Button text="Send" width="20%" class="btn btn-primary -rounded-sm m-l-0" backgroundColor="#ffecc5" (tap)="onSend()"></Button>
         </StackLayout>
     </StackLayout>
     <StackLayout orientation="vertical" height="95%" style="margin-top: 10;">
